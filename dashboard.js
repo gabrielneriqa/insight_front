@@ -71,6 +71,7 @@ async function salvarResultado() {
     const cliques = document.getElementById("cliques").value;
     const leads = document.getElementById("leads").value;
     const data = document.getElementById("dataResultado").value;
+
     const statusSpan = document.getElementById("resultadoStatus");
 
     if (!campanhaId || !alcance || !engajamento || !cliques || !leads || !data) {
@@ -102,6 +103,11 @@ async function salvarResultado() {
         statusSpan.textContent = "Resultado salvo com sucesso!";
         statusSpan.classList.remove("text-danger");
         statusSpan.classList.add("text-success");
+        setTimeout(() => {
+            statusSpan.textContent = ""; // Limpa o texto
+            statusSpan.classList.remove("text-success"); // Remove a classe de estilo (opcional, mas bom para limpar)
+        }, 2000);
+
 
         // limpa campos
         document.getElementById("alcance").value = "";
@@ -115,6 +121,7 @@ async function salvarResultado() {
         statusSpan.classList.remove("text-success");
         statusSpan.classList.add("text-danger");
     }
+    gerarRelatorio(campanhaId);
 }
 
 async function gerarRelatorio(id) {
