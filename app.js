@@ -35,9 +35,11 @@ function mostrarLogin() {
 }
 
 async function login() {
-    const email = document.getElementById("email").value;
+    const inputEmail = document.getElementById("email");
+    const email = inputEmail.value;
     const senha = document.getElementById("senha").value;
     const status = document.getElementById("login-status");
+
 
     if (status) {
         status.innerText = "";
@@ -46,6 +48,13 @@ async function login() {
     if (!email || !senha) {
         if (status) {
             status.innerText = "Preencha e-mail e senha.";
+        }
+        return;
+    }
+
+    if (!inputEmail.checkValidity()) {
+        if (status) {
+            status.innerText = "Por favor, insira um endereço de e-mail válido.";
         }
         return;
     }
@@ -78,7 +87,8 @@ async function login() {
 
 async function cadastrar() {
     const nome = document.getElementById("nomeCadastro").value;
-    const email = document.getElementById("emailCadastro").value;
+    const inputEmailElement = document.getElementById("emailCadastro");
+    const email = inputEmailElement.value;
     const senha = document.getElementById("senhaCadastro").value;
     const status = document.getElementById("cadastro-status");
 
@@ -91,6 +101,13 @@ async function cadastrar() {
         if (status) {
             status.innerText = "Preencha todos os campos.";
             status.classList.add("text-danger");
+        }
+        return;
+    }
+
+    if (!inputEmailElement.checkValidity()) {
+        if (status) {
+            status.innerText = "Por favor, insira um endereço de e-mail válido.";
         }
         return;
     }
